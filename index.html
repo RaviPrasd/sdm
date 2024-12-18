@@ -1,7 +1,133 @@
-<html>
-<head>
-<h1>
-My Website After Jenkins
-</h1>
-</head>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form with Table</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      form,
+      table {
+        margin: 20px 0;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      table,
+      th,
+      td {
+        border: 1px solid black;
+      }
+      th,
+      td {
+        padding: 8px;
+        text-align: left;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+      .form-container {
+        border: 1px solid #000;
+        padding: 20px;
+        width: 400px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Fill the Form</h2>
+
+    <div class="form-container">
+      <form id="dataForm">
+        <label>Name:</label><br />
+        <input type="text" id="name" required /><br /><br />
+
+        <label>Password:</label><br />
+        <input type="password" id="password" required /><br /><br />
+
+        <label>Email:</label><br />
+        <input type="email" id="email" required /><br /><br />
+
+        <label>DOB:</label><br />
+        <input type="date" id="dob" required /><br /><br />
+
+        <label>City:</label><br />
+        <input type="text" id="city" required /><br /><br />
+
+        <label>State:</label><br />
+        <input type="text" id="state" required /><br /><br />
+
+        <label>Hobbies:</label><br />
+        <input type="checkbox" id="cricket" value="Playing Cricket" /> Playing
+        Cricket<br />
+        <input type="checkbox" id="tt" value="Playing TT" /> Playing TT<br />
+        <input type="checkbox" id="movies" value="Watching Movies" /> Watching
+        Movies<br />
+        <input type="checkbox" id="songs" value="Listening Songs" /> Listening
+        Songs<br /><br />
+
+        <button type="button" onclick="submitForm()">Submit</button>
+      </form>
+    </div>
+
+    <h2>Submitted Data</h2>
+    <table id="dataTable">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Password</th>
+          <th>Email</th>
+          <th>DOB</th>
+          <th>City</th>
+          <th>State</th>
+          <th>Hobbies</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Rows will be dynamically added here -->
+      </tbody>
+    </table>
+
+    <script>
+      function submitForm() {
+        // Get form values
+        const name = document.getElementById("name").value;
+        const password = document.getElementById("password").value;
+        const email = document.getElementById("email").value;
+        const dob = document.getElementById("dob").value;
+        const city = document.getElementById("city").value;
+        const state = document.getElementById("state").value;
+
+        // Collect hobbies
+        let hobbies = [];
+        if (document.getElementById("cricket").checked)
+          hobbies.push("Playing Cricket");
+        if (document.getElementById("tt").checked) hobbies.push("Playing TT");
+        if (document.getElementById("movies").checked)
+          hobbies.push("Watching Movies");
+        if (document.getElementById("songs").checked)
+          hobbies.push("Listening Songs");
+
+        // Add data to table
+        const table = document
+          .getElementById("dataTable")
+          .getElementsByTagName("tbody")[0];
+        const newRow = table.insertRow();
+
+        newRow.insertCell(0).innerText = name;
+        newRow.insertCell(1).innerText = password;
+        newRow.insertCell(2).innerText = email;
+        newRow.insertCell(3).innerText = dob;
+        newRow.insertCell(4).innerText = city;
+        newRow.insertCell(5).innerText = state;
+        newRow.insertCell(6).innerText = hobbies.join(", ");
+
+        // Clear the form
+        document.getElementById("dataForm").reset();
+      }
+    </script>
+  </body>
 </html>
